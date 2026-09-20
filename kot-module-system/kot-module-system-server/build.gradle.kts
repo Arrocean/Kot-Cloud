@@ -1,10 +1,15 @@
 plugins {
+    application
     kotlin("jvm")
     id("com.google.devtools.ksp")
 }
 
 group = "com.arrocean.dev"
 version = "0.0.1"
+
+application {
+    mainClass.set("com.arrocean.dev.module.system.SystemServerApplication")
+}
 
 dependencies {
     // Micronaut HTTP

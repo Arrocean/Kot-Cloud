@@ -17,7 +17,7 @@ class GatewayAuthenticationFilterTest {
         val filter = filter()
 
         val response = Mono.from<io.micronaut.http.MutableHttpResponse<*>>(
-            filter.doFilter(HttpRequest.GET<Any>("/health"), chain())
+            filter.doFilter(HttpRequest.GET<Any>("/v1/admin-api/system/auth/login"), chain())
         ).block()
 
         assertEquals(HttpStatus.NO_CONTENT, response?.status)
@@ -48,7 +48,7 @@ class GatewayAuthenticationFilterTest {
     @Test
     fun `propagates Redis unavailability for global error mapping`() {
         val filter = GatewayAuthenticationFilter(
-            properties = GatewayProperties(),
+            properties = propertiesWithRoutes(),
             authenticationService = GatewayAuthenticationService(
                 tokenVerifier = GatewayTokenVerifier { GatewayPrincipal(it, "session-1", CommonUserTypeEnum.USER) },
                 sessionValidator = GatewaySessionValidator { throw GatewaySessionUnavailableException(IllegalStateException()) },
@@ -65,7 +65,7 @@ class GatewayAuthenticationFilterTest {
 
     private fun filter(): GatewayAuthenticationFilter {
         return GatewayAuthenticationFilter(
-            properties = GatewayProperties(),
+            properties = propertiesWithRoutes(),
             authenticationService = GatewayAuthenticationService(
                 tokenVerifier = GatewayTokenVerifier { GatewayPrincipal(it, "session-1", CommonUserTypeEnum.USER) },
                 sessionValidator = GatewaySessionValidator { true },
@@ -122,6 +122,7 @@ class GatewayAuthenticationFilterTest {
 
     private fun propertiesWithRoutes(): GatewayProperties {
         return GatewayProperties().apply {
+            publicPaths = listOf("/v1/admin-api/system/auth/login")
             routes = listOf(
                 GatewayProperties.RouteProperties().apply {
                     id = "system"
