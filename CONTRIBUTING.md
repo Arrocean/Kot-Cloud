@@ -66,28 +66,28 @@ Maintainers may squash or rebase your commits when merging.
 
 ### Prerequisites
 
-| Tool       | Version                        | Notes                                            |
-|------------|--------------------------------|--------------------------------------------------|
-| JDK        | 21 or later                    | GraalVM optional, only for `kot-server` native image |
-| PostgreSQL | Any supported version          | Local instance or remote test database           |
-| Redis      | Any supported version          | Required for token sessions                      |
-| Git        | Latest                         |                                                  |
+| Tool       | Version               | Notes                                                |
+|------------|-----------------------|------------------------------------------------------|
+| JDK        | 21 or later           | GraalVM optional, only for `kot-server` native image |
+| PostgreSQL | Any supported version | Local instance or remote test database               |
+| Redis      | Any supported version | Required for token sessions                          |
+| Git        | Latest                |                                                      |
 
-Gradle is invoked through the wrapper (`./gradlew`, or `gradlew.bat` on Windows), so no local Gradle installation is needed. The project uses Kotlin 2.4, Gradle 9.6.1, and Micronaut.
+Gradle is invoked through the wrapper (`./gradlew`, or `gradlew.bat` on Windows), so no local Gradle installation is needed. The project uses Kotlin 2.4.20, Gradle 9.7.1, and Micronaut 5.1.5 (Platform BOM).
 
 ### Configuration
 
 Services read configuration from `application.properties` in each module's `src/main/resources` and can be overridden with environment variables:
 
-| Variable            | Used by                | Purpose                          |
-|---------------------|------------------------|----------------------------------|
-| `JDBC_URL`          | `kot-server`, system   | PostgreSQL JDBC URL              |
-| `JDBC_USER` / `JDBC_PASSWORD` | `kot-server`, system | Database credentials     |
-| `REDIS_URI`         | `kot-server`, `kot-gateway`, system | Redis connection URI, e.g. `redis://127.0.0.1:6379/0` |
-| `JWT_SECRET`        | all services           | Shared JWT signing secret (at least 32 bytes) |
-| `PASSWORD_ENCODER`  | `kot-server`, system   | `pbkdf2` (default), `bcrypt`, or `argon2id` |
-| `GATEWAY_PORT`      | `kot-gateway`          | Gateway listen port (default `8080`) |
-| `SYSTEM_SERVICE_URL` / `MEMBER_SERVICE_URL` | `kot-gateway` | Downstream route targets (default `http://127.0.0.1:1164`) |
+| Variable                                    | Used by                             | Purpose                                                    |
+|---------------------------------------------|-------------------------------------|------------------------------------------------------------|
+| `JDBC_URL`                                  | `kot-server`, system                | PostgreSQL JDBC URL                                        |
+| `JDBC_USER` / `JDBC_PASSWORD`               | `kot-server`, system                | Database credentials                                       |
+| `REDIS_URI`                                 | `kot-server`, `kot-gateway`, system | Redis connection URI, e.g. `redis://127.0.0.1:6379/0`      |
+| `JWT_SECRET`                                | all services                        | Shared JWT signing secret (at least 32 bytes)              |
+| `PASSWORD_ENCODER`                          | `kot-server`, system                | `pbkdf2` (default), `bcrypt`, or `argon2id`                |
+| `GATEWAY_PORT`                              | `kot-gateway`                       | Gateway listen port (default `8080`)                       |
+| `SYSTEM_SERVICE_URL` / `MEMBER_SERVICE_URL` | `kot-gateway`                       | Downstream route targets (default `http://127.0.0.1:1164`) |
 
 `kot-server` also ships an `application-local` profile with a ready-made local configuration.
 

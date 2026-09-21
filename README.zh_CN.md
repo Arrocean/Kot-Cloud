@@ -6,7 +6,7 @@
 
 ## 当前能力
 
-- Kotlin 2.4.0、Gradle 9.6.1 与 Micronaut。
+- Kotlin 2.4.20、Gradle 9.7.1 与 Micronaut 5.1.5（Platform BOM）。
 - 基于 Micronaut Data JDBC、HikariCP 和 PostgreSQL 的数据访问。
 - JWT access token、Redis 会话及可配置密码编码器。
 - 管理员注册、登录、登出和当前用户信息接口。

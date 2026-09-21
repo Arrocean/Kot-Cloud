@@ -73,21 +73,21 @@ type(scope): 简短概述
 | Redis      | 任意受支持版本           | 令牌会话所必需                             |
 | Git        | 最新版                   |                                            |
 
-Gradle 通过 Wrapper 调用（`./gradlew`，Windows 下为 `gradlew.bat`），无需本地安装 Gradle。项目使用 Kotlin 2.4、Gradle 9.6.1 与 Micronaut。
+Gradle 通过 Wrapper 调用（`./gradlew`，Windows 下为 `gradlew.bat`），无需本地安装 Gradle。项目使用 Kotlin 2.4.20、Gradle 9.7.1 与 Micronaut 5.1.5（Platform BOM）。
 
 ### 配置
 
 各服务从自身 `src/main/resources` 下的 `application.properties` 读取配置，并可通过环境变量覆盖：
 
-| 变量                        | 使用方                              | 用途                                          |
-|-----------------------------|-------------------------------------|-----------------------------------------------|
-| `JDBC_URL`                  | `kot-server`、system                | PostgreSQL JDBC URL                           |
-| `JDBC_USER` / `JDBC_PASSWORD` | `kot-server`、system              | 数据库凭据                                    |
-| `REDIS_URI`                 | `kot-server`、`kot-gateway`、system | Redis 连接串，如 `redis://127.0.0.1:6379/0`   |
-| `JWT_SECRET`                | 全部服务                            | 共享 JWT 签名密钥（至少 32 字节）             |
-| `PASSWORD_ENCODER`          | `kot-server`、system                | `pbkdf2`（默认）、`bcrypt` 或 `argon2id`      |
-| `GATEWAY_PORT`              | `kot-gateway`                       | 网关监听端口（默认 `8080`）                   |
-| `SYSTEM_SERVICE_URL` / `MEMBER_SERVICE_URL` | `kot-gateway`       | 下游路由目标（默认 `http://127.0.0.1:1164`）  |
+| 变量                                        | 使用方                              | 用途                                         |
+|---------------------------------------------|-------------------------------------|----------------------------------------------|
+| `JDBC_URL`                                  | `kot-server`、system                | PostgreSQL JDBC URL                          |
+| `JDBC_USER` / `JDBC_PASSWORD`               | `kot-server`、system                | 数据库凭据                                   |
+| `REDIS_URI`                                 | `kot-server`、`kot-gateway`、system | Redis 连接串，如 `redis://127.0.0.1:6379/0`  |
+| `JWT_SECRET`                                | 全部服务                            | 共享 JWT 签名密钥（至少 32 字节）            |
+| `PASSWORD_ENCODER`                          | `kot-server`、system                | `pbkdf2`（默认）、`bcrypt` 或 `argon2id`     |
+| `GATEWAY_PORT`                              | `kot-gateway`                       | 网关监听端口（默认 `8080`）                  |
+| `SYSTEM_SERVICE_URL` / `MEMBER_SERVICE_URL` | `kot-gateway`                       | 下游路由目标（默认 `http://127.0.0.1:1164`） |
 
 `kot-server` 另附 `application-local` 环境，内置一份开箱即用的本地配置。
 

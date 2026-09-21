@@ -6,7 +6,7 @@ The primary application is `kot-server`. It aggregates business modules while pr
 
 ## Current Capabilities
 
-- Kotlin 2.4.0, Gradle 9.6.1, and Micronaut.
+- Kotlin 2.4.20, Gradle 9.7.1, and Micronaut 5.1.5 (Platform BOM).
 - PostgreSQL persistence through Micronaut Data JDBC and HikariCP.
 - JWT access tokens with Redis-backed sessions and configurable password encoders.
 - Administrator registration, login, logout, and current-profile endpoints.
