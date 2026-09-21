@@ -9,11 +9,9 @@ import io.micronaut.context.annotation.EachProperty
  * 路由、认证会话和跨域策略均通过配置提供，避免网关与具体下游业务模块耦合。
  */
 @ConfigurationProperties("kot.gateway")
-open class GatewayProperties @jakarta.inject.Inject constructor(
-    routes: List<RouteProperties> = emptyList(),
-) {
+open class GatewayProperties {
 
-    var routes: List<RouteProperties> = routes
+    var routes: List<RouteProperties> = emptyList()
     var publicPaths: List<String> = emptyList()
     var jwt: JwtProperties = JwtProperties()
     var redis: RedisProperties = RedisProperties()
