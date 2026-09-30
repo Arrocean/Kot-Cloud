@@ -13,9 +13,9 @@ tasks.wrapper {
 }
 
 val commonRepositories: RepositoryHandler.() -> Unit = {
-//    maven("https://mirrors.huaweicloud.com/repository/maven/")
-    maven("https://maven.aliyun.com/repository/public/")
-    maven("https://mirrors.tencent.com/nexus/repository/maven-public/")
+    maven("https://mirrors.huaweicloud.com/repository/maven/")
+//    maven("https://maven.aliyun.com/repository/public/")
+//    maven("https://mirrors.tencent.com/nexus/repository/maven-public/")
     mavenCentral()
     google()
 }
